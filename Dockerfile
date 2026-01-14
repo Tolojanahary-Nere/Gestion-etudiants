@@ -39,7 +39,9 @@ RUN npm install
 RUN npm run build
 
 # Set permissions
+RUN mkdir -p /var/www/html/storage/logs
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage
 
 # Copy and set up entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
