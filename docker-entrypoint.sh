@@ -7,15 +7,9 @@ ls -la /var/www/html/database/migrations/
 
 echo ""
 echo "==================================="
-echo "Running migrations with verbose output..."
+echo "Running migrations with fresh start..."
 echo "==================================="
-php artisan migrate --force -vvv
-
-echo ""
-echo "==================================="
-echo "Seeding database..."
-echo "==================================="
-php artisan db:seed --force || echo "Seeding failed or already done, continuing..."
+php artisan migrate:fresh --force --seed -vvv
 
 echo ""
 echo "==================================="
