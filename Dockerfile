@@ -36,6 +36,11 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Install Node dependencies and build assets
 RUN npm install
+
+# Set production environment for asset compilation
+ENV APP_ENV=production
+ENV NODE_ENV=production
+
 RUN npm run build
 
 # Set permissions
