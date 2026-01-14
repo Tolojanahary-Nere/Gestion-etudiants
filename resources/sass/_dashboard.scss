@@ -1,0 +1,127 @@
+// _dashboard.scss
+
+.layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+// Sidebar
+.layout-sidebar {
+    width: $sidebar-width;
+    background-color: $sidebar-bg;
+    color: $sidebar-color;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+
+    .sidebar-header {
+        height: $topbar-height;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: $white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sidebar-nav {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem 0;
+
+        .nav-item {
+            .nav-link {
+                color: $sidebar-color;
+                padding: 0.75rem 1.5rem;
+                display: flex;
+                align-items: center;
+                transition: all 0.2s ease;
+
+                i {
+                    margin-right: 0.75rem;
+                    width: 1.25rem;
+                    text-align: center;
+                }
+
+                &:hover,
+                &.active {
+                    color: $sidebar-active-color;
+                    background: linear-gradient(90deg, rgba($primary, 0.2) 0%, rgba($primary, 0) 100%);
+                    border-left: 3px solid $primary;
+                }
+            }
+        }
+    }
+}
+
+// Page Content
+.layout-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: $sidebar-width; // Push content
+    background-color: $body-bg;
+    min-height: 100vh;
+    transition: margin 0.2s;
+}
+
+// Topbar
+.layout-topbar {
+    height: $topbar-height;
+    background-color: $topbar-bg;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    z-index: 900;
+}
+
+.content-wrapper {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+// Utilities
+.text-body {
+    color: $body-color !important;
+}
+
+.bg-card {
+    background-color: $card-bg !important;
+}
+
+// Modals
+.modal-content {
+    background-color: $card-bg;
+    color: $body-color;
+    border: 1px solid $card-border-color;
+}
+
+.modal-header,
+.modal-footer {
+    border-color: $card-border-color;
+}
+
+.close {
+    color: $body-color; // fix for close button visibility
+}
+
+.form-control {
+    background-color: darken($card-bg, 3%);
+    border-color: $card-border-color;
+    color: $white;
+
+    &:focus {
+        background-color: darken($card-bg, 3%);
+        color: $white;
+        border-color: $primary;
+    }
+}

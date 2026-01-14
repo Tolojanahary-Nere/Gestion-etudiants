@@ -1,0 +1,35 @@
+// Body
+$body-bg: #151521;
+$body-color: #92929f;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Components
+$card-bg: #1e1e2d;
+$card-cap-bg: #1e1e2d;
+$card-border-color: #2b2b40;
+$card-color: #ffffff;
+
+// Sidebar
+$sidebar-bg: #1e1e2d;
+$sidebar-width: 260px;
+$sidebar-color: #92929f;
+$sidebar-active-bg: #2b2b40; // Approx
+$sidebar-active-color: #ffffff;
+
+// Topbar
+$topbar-bg: #1e1e2d;
+$topbar-height: 70px;
+
+// Bootstrap Overrides
+$primary: #7367f0;
+$secondary: #a8aaae;
+$success: #28c76f;
+$info: #00cfe8;
+$warning: #ff9f43;
+$danger: #ea5455;
+$light: #44475b; // Darker light for dark mode
+$dark: #b6bee3; // Lighter dark for dark mode text
