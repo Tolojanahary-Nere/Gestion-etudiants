@@ -30,11 +30,11 @@ Dans la section "Environment Variables", ajoutez :
 | `DB_CONNECTION` | `pgsql` |
 | `DB_HOST` | (Voir étape 4 ci-dessous) |
 | `DB_PORT` | `5432` |
-| `DB_DATABASE` | (Voir étape 4) |
+| `` | (Voir étape 4) |
 | `DB_USERNAME` | (Voir étape 4) |
 | `DB_PASSWORD` | (Voir étape 4) |
 
-## 4. Base de Données (PostgreSQL)
+## 4. Base DB_DATABASEde Données (PostgreSQL)
 1.  Ouvrez un nouvel onglet Render.
 2.  Cliquez sur **New +** -> **PostgreSQL**.
 3.  Nommez-la `gestion-db`.
