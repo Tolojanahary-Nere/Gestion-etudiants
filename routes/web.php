@@ -9,6 +9,7 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 // Route::get('/home', ...); // Removed
 
 //students route
+Route::get('/students/export', [StudentController::class, 'export'])->name('students.export');
 Route::get('/students', [StudentController::class,'index'])->name('students.index');
 Route::get('/students/create', [StudentController::class,'create'])->name('students.create');
 Route::post('/students', [StudentController::class,'store'])->name('students.store');
@@ -21,6 +22,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\GradeController;
 
 Route::resource('subjects', SubjectController::class)->except(['create', 'edit', 'show']);
+Route::get('/students/{student}/report', [GradeController::class, 'downloadReport'])->name('students.report');
 Route::resource('grades', GradeController::class)->except(['create', 'edit', 'show']);
 // Auth::routes(); // Removed as requested
 

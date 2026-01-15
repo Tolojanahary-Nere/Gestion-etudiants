@@ -6,6 +6,7 @@ use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GradeController extends Controller
 {
@@ -95,5 +96,15 @@ class GradeController extends Controller
 
         return redirect()->route('grades.index')
                          ->with('success', 'Note supprimée avec succès.');
+    }
+
+    public function downloadReport(Student $student)
+    {
+        $grades = $student->grades()->with('subject')->get();
+        $average = $grades->avg('value');
+
+        $pdf = Pdf::loadView('grades.report', compact('student', 'grades', 'average'));
+        
+        return $pdf->download('bulletin_' . $student->id . '.pdf');
     }
 }

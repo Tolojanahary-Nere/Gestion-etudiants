@@ -5,9 +5,14 @@
     <div class="col-12">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
             <h3 class="text-white mb-0">Liste des étudiants</h3>
-            <button type="button" class="btn btn-primary w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#createModal">
-                <i class="bi bi-plus-lg me-1"></i> Ajouter un étudiant
-            </button>
+            <div class="d-flex gap-2 w-100 w-md-auto">
+                <a href="{{ route('students.export') }}" class="btn btn-success flex-grow-1 flex-md-grow-0">
+                    <i class="bi bi-file-earmark-spreadsheet me-1"></i> Export Excel
+                </a>
+                <button type="button" class="btn btn-primary flex-grow-1 flex-md-grow-0" data-bs-toggle="modal" data-bs-target="#createModal">
+                    <i class="bi bi-plus-lg me-1"></i> Ajouter un étudiant
+                </button>
+            </div>
         </div>
 
         @if(session('success'))
@@ -57,6 +62,9 @@
                             <td class="d-none d-md-table-cell">{{ $student->email }}</td>
                             <td class="d-none d-md-table-cell">{{ $student->phone }}</td>
                             <td class="text-end">
+                                <a href="{{ route('students.report', $student->id) }}" class="btn btn-sm btn-secondary me-1" target="_blank" title="Bulletin">
+                                    <i class="bi bi-file-pdf"></i>
+                                </a>
                                 <button type="button" class="btn btn-sm btn-info me-1" 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#editModal" 
