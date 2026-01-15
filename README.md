@@ -1,59 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gestion Étudiants - Laravel Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Une application de gestion d'étudiants développée avec Laravel, permettant de gérer facilement les inscriptions, les matières et les notes des étudiants via un tableau de bord intuitif et responsive.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Fonctionnalités
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🖥️ Tableau de Bord
+- Vue d'ensemble des statistiques (Total étudiants, notes moyennes, etc.).
+- Graphiques de répartition des notes et moyennes par matière.
+- Liste des meilleurs étudiants.
+- **Entièrement Responsive** : Adapté aux mobiles, tablettes et ordinateurs.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🎓 Gestion des Étudiants
+- Inscription et gestion des profils étudiants (Nom, Email, Téléphone).
+- Recherche rapide.
+- Édition et suppression des profils.
 
-## Learning Laravel
+### 📚 Gestion des Notes et Matières
+- Ajout, modification et suppression des notes.
+- Calcul automatique des moyennes.
+- Tableaux avec défilement intelligent sur mobile (horizontal et vertical).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🚀 Installation et Démarrage
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Suivez ces étapes pour lancer le projet en local.
 
-## Laravel Sponsors
+### Prérequis
+- [PHP](https://www.php.net/) (v8.1 ou supérieur)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/) & NPM
+- Base de données (MySQL conseillé)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Cloner le projet
+```bash
+git clone https://github.com/votre-repo/gestion-etudiants.git
+cd gestion-etudiants
+```
 
-### Premium Partners
+### 2. Installer les dépendances
+```bash
+# Dépendances PHP
+composer install
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Dépendances JavaScript/CSS
+npm install
+```
 
-## Contributing
+### 3. Configuration de l'environnement
+Copiez le fichier d'exemple `.env` et configurez votre base de données :
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+Puis ouvrez le fichier `.env` et modifiez les lignes suivantes selon votre configuration MySQL :
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gestion_student
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Base de données
+Créez la base de données et lancez les migrations :
+```bash
+php artisan migrate
+```
+*(Optionnel) Pour avoir des données de test :*
+```bash
+php artisan db:seed
+```
 
-## Code of Conduct
+### 5. Lancer l'application
+Vous aurez besoin de deux terminaux pour lancer l'application en mode développement.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Terminal 1 (Serveur Laravel) :**
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+**Terminal 2 (Compilation Assets Vite) :**
+```bash
+npm run dev
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+L'application sera accessible à l'adresse : [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-## License
+## 📱 Responsivité
+L'interface a été optimisée pour tous les types d'écrans :
+- **Navigation** : Barre latérale rétractable sur mobile.
+- **Tableaux** : Défilement horizontal et vertical automatique sur les petits écrans pour une lisibilité maximale.
+- **Formulaires** : Mise en page adaptative.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📄 Licence
+Ce projet est sous licence [MIT](https://opensource.org/licenses/MIT).
