@@ -82,14 +82,14 @@
             <div class="card-header border-bottom border-secondary">
                 <h5 class="mb-0">Meilleurs Étudiants (Top 5)</h5>
             </div>
-            <div class="table-responsive">
-                <table class="table table-dark table-hover mb-0">
+            <div class="table-responsive mobile-table-container">
+                <table class="table table-dark table-hover mb-0 table-nowrap-mobile">
                     <thead>
                         <tr>
                             <th>Rang</th>
                             <th>Nom</th>
                             <th>Moyenne</th>
-                            <th>Email</th>
+                            <th class="d-none d-md-table-cell">Email</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,7 +108,7 @@
                                     {{ number_format($student->grades->avg('value'), 2) }} / 20
                                 </span>
                             </td>
-                            <td>{{ $student->email }}</td>
+                            <td class="d-none d-md-table-cell">{{ $student->email }}</td>
                         </tr>
                         @empty
                         <tr>

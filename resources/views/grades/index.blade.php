@@ -3,16 +3,16 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
             <h3 class="text-white mb-0">Gestion des Notes</h3>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+            <button type="button" class="btn btn-primary w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#createModal">
                 <i class="bi bi-plus-lg me-1"></i> Ajouter une note
             </button>
         </div>
 
         <div class="card bg-card text-white mb-4">
             <div class="card-body">
-                <form action="{{ route('grades.index') }}" method="GET" class="d-flex">
+                <form action="{{ route('grades.index') }}" method="GET" class="d-flex w-100">
                     <input type="text" name="search" class="form-control me-2" placeholder="Rechercher par étudiant ou matière..." value="{{ request('search') }}">
                     <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
                 </form>
@@ -38,8 +38,8 @@
         @endif
 
         <div class="card bg-card text-white">
-            <div class="table-responsive">
-                <table class="table table-dark table-hover mb-0">
+            <div class="table-responsive mobile-table-container">
+                <table class="table table-dark table-hover mb-0 table-nowrap-mobile">
                     <thead class="table-light text-dark">
                         <tr>
                             <th>#</th>

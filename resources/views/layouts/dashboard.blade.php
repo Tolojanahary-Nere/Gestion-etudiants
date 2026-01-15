@@ -22,8 +22,11 @@
 </head>
 <body>
     <div id="app" class="layout-wrapper">
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!-- Sidebar -->
-        <nav class="layout-sidebar">
+        <nav class="layout-sidebar" id="layoutSidebar">
             <div class="sidebar-header">
                 <i class="bi bi-bootstrap-fill me-2 text-primary"></i>
                 <span>GESTION ETUDIANTS</span>
@@ -61,7 +64,7 @@
             <!-- Topbar -->
             <nav class="layout-topbar">
                 <div class="d-flex align-items-center flex-grow-1 me-3">
-                    <button class="btn btn-icon btn-text-secondary me-3 d-lg-none">
+                    <button class="btn btn-icon btn-text-secondary me-3 d-lg-none" id="sidebarToggle">
                         <i class="bi bi-list"></i>
                     </button>
                     <form id="globalSearchForm" method="GET" class="w-100 d-none d-lg-flex" style="max-width: 400px;">
@@ -74,10 +77,10 @@
 
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
+                        // Search Logic
                         const form = document.getElementById('globalSearchForm');
                         const path = window.location.pathname;
                         
-                        // Smart Search Logic
                         if (path.includes('/students')) {
                             form.action = "{{ route('students.index') }}";
                             form.querySelector('input').placeholder = "Rechercher un étudiant...";
@@ -88,7 +91,28 @@
                             form.action = "{{ route('grades.index') }}";
                              form.querySelector('input').placeholder = "Rechercher une note (étudiant/matière)...";
                         } else {
-                            form.style.visibility = 'hidden'; // Hide on dashboard to avoid confusion
+                            form.style.visibility = 'hidden';
+                        }
+
+                        // Sidebar Toggle Logic
+                        const sidebarToggle = document.getElementById('sidebarToggle');
+                        const layoutSidebar = document.getElementById('layoutSidebar');
+                        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+                        if (sidebarToggle && layoutSidebar && sidebarOverlay) {
+                            function toggleSidebar() {
+                                layoutSidebar.classList.toggle('show');
+                                sidebarOverlay.classList.toggle('show');
+                            }
+
+                            sidebarToggle.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                toggleSidebar();
+                            });
+
+                            sidebarOverlay.addEventListener('click', () => {
+                                toggleSidebar();
+                            });
                         }
                     });
                 </script>

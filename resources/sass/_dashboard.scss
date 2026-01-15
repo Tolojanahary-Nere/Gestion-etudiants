@@ -3,7 +3,7 @@
 .layout-wrapper {
     display: flex;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden; // Prevent horizontal scroll on body
 }
 
 // Sidebar
@@ -18,7 +18,19 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    transition: transform 0.3s ease-in-out; // Add transition
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+
+    // Mobile: Hidden by default
+    @media (max-width: 991.98px) {
+        transform: translateX(-100%);
+    }
+
+    // Mobile: Show when active
+    &.show {
+        transform: translateX(0);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
 
     .sidebar-header {
         height: $topbar-height;
@@ -61,15 +73,36 @@
     }
 }
 
+// Overlay for mobile sidebar
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none; // Hidden by default
+
+    &.show {
+        display: block; // Show when active
+    }
+}
+
 // Page Content
 .layout-page {
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-width: 0; // Fix for flex children expansion
     margin-left: $sidebar-width; // Push content
     background-color: $body-bg;
     min-height: 100vh;
-    transition: margin 0.2s;
+    transition: margin-left 0.3s ease-in-out; // Smooth transition
+
+    @media (max-width: 991.98px) {
+        margin-left: 0; // Full width on mobile
+    }
 }
 
 // Topbar
@@ -87,6 +120,8 @@
 .content-wrapper {
     flex: 1;
     padding: 1.5rem;
+    min-width: 0; // Fix for flex children expansion
+    width: 100%;
 }
 
 // Utilities
@@ -96,6 +131,23 @@
 
 .bg-card {
     background-color: $card-bg !important;
+}
+
+// Utility: Nowrap only on mobile (for tables)
+@media (max-width: 767.98px) {
+    .table-nowrap-mobile {
+        white-space: nowrap;
+    }
+
+    .mobile-table-container {
+        max-height: 60vh; // Limit height to trigger vertical scroll
+        overflow-y: auto !important; // Force vertical scroll
+        overflow-x: auto !important; // Force horizontal scroll
+        -webkit-overflow-scrolling: touch; // Smooth scroll on iOS
+        display: block; // Ensure it behaves like a block for scrolling
+        border: 1px solid $card-border-color; // Optional: visual cue
+        border-radius: 0.375rem;
+    }
 }
 
 // Modals

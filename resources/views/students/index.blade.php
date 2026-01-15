@@ -3,9 +3,9 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
             <h3 class="text-white mb-0">Liste des étudiants</h3>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+            <button type="button" class="btn btn-primary w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#createModal">
                 <i class="bi bi-plus-lg me-1"></i> Ajouter un étudiant
             </button>
         </div>
@@ -29,23 +29,23 @@
         @endif
 
         <div class="card bg-card text-white">
-            <div class="card-header d-flex justify-content-between align-items-center border-bottom border-secondary">
+            <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-center border-bottom border-secondary gap-3">
                 <h5 class="mb-0">Étudiants</h5>
-                <form action="{{ route('students.index') }}" method="GET" class="d-flex" style="width: 250px;">
+                <form action="{{ route('students.index') }}" method="GET" class="d-flex w-100 w-md-auto" style="min-width: 250px;">
                     <div class="input-group">
                         <span class="input-group-text bg-dark border-secondary text-secondary"><i class="bi bi-search"></i></span>
                         <input type="text" name="search" class="form-control bg-dark border-secondary text-white" placeholder="Rechercher..." value="{{ request('search') }}">
                     </div>
                 </form>
             </div>
-            <div class="table-responsive">
-                <table class="table table-dark table-hover mb-0">
+            <div class="table-responsive mobile-table-container">
+                <table class="table table-dark table-hover mb-0 table-nowrap-mobile">
                     <thead class="table-light text-dark">
                         <tr>
                             <th>#</th>
                             <th>Nom</th>
-                            <th>Email</th>
-                            <th>Téléphone</th>
+                            <th class="d-none d-md-table-cell">Email</th>
+                            <th class="d-none d-md-table-cell">Téléphone</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -54,8 +54,8 @@
                         <tr>
                             <td>{{ $loop->iteration + ($students->currentPage() - 1) * $students->perPage() }}</td>
                             <td>{{ $student->name }}</td>
-                            <td>{{ $student->email }}</td>
-                            <td>{{ $student->phone }}</td>
+                            <td class="d-none d-md-table-cell">{{ $student->email }}</td>
+                            <td class="d-none d-md-table-cell">{{ $student->phone }}</td>
                             <td class="text-end">
                                 <button type="button" class="btn btn-sm btn-info me-1" 
                                     data-bs-toggle="modal" 
