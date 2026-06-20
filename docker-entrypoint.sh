@@ -1,15 +1,31 @@
 #!/bin/bash
+set -e
 
 echo "==================================="
-echo "Checking migration files..."
+echo "Fixing storage permissions..."
 echo "==================================="
-ls -la /var/www/html/database/migrations/
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 echo ""
 echo "==================================="
-echo "Running migrations with fresh start..."
+echo "Caching configuration..."
 echo "==================================="
-php artisan migrate:fresh --force --seed -vvv
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+echo ""
+echo "==================================="
+echo "Creating storage symlink..."
+echo "==================================="
+php artisan storage:link --force || true
+
+echo ""
+echo "==================================="
+echo "Running migrations..."
+echo "==================================="
+php artisan migrate --force --seed
 
 echo ""
 echo "==================================="
